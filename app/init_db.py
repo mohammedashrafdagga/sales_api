@@ -1,5 +1,5 @@
-from database import engine, SessionLocal, Base
-from models import User, Product, Sales
+from app.database import engine, SessionLocal, Base
+from app.models import User, Product, Sales
 
 # create all table in database
 Base.metadata.create_all(bind=engine)

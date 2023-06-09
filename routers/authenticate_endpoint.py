@@ -13,7 +13,7 @@ from app.settings import ACCESS_TOKEN_EXPIRE_MINUTES
 
 # create router 
 router= APIRouter(
-    prefix='api/auth/',
+    prefix='/api/auth',
     tags = ['authenticate']
 )
 

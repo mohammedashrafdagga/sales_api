@@ -2,13 +2,13 @@ from passlib.context import CryptContext
 from fastapi import HTTPException, status, Depends
 from fastapi.security import OAuth2PasswordBearer
 from typing import Annotated
-from models import User
+from app.models import User
 from datetime import datetime, timedelta
 from sqlalchemy.orm import Session
-from init_db import get_db
+from app.init_db import get_db
 from jose import JWTError, jwt
-from settings import SECRET_KEY, ALGORITHM
-from schemas import TokenData
+from app.settings import SECRET_KEY, ALGORITHM
+from app.schemas import TokenData
 
 
 pwd_context = CryptContext(schemes=['bcrypt'], deprecated = 'auto')
