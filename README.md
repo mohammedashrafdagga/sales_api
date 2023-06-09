@@ -29,15 +29,16 @@ Hi! I'm Building Mini Sales API System using Fastapi Framework.
 #####  How to use projects
 -  create new floder called 'sales_api' and move to floder.
 - then clone this project using this command
+
 ```git clone https://github.com/mohammedashrafdagga/sales_api.git .```
 - after that we must create new virtual environment using this command
 ```python -m venv venv```
 - then active it
 -  In window using this command ```venv/scripts/activate```
 - in Lunix or Mac using this command ```source/bin/activate```
-- using this command to install all library in `requirements.txt` file ```pip install -r requirements.txt```
-- after that we must create `.env` file tp put variable using in project
+- using this command to install all library in requirements.txt file ```pip install -r requirements.txt```
 - create new database in postgressql called `sales_api`
+- after that we must create `.env` file tp put variable using in project
 - in this file include `SECERT_KEY ` and Variable Using in `app.settings` file to connect with postgresql database
 ```
 DB_USERNAME=***
