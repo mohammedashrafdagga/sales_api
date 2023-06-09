@@ -38,7 +38,7 @@ def get_user(username:str, db):
 def authenticate_user( username: str, password: str, db:Session = Depends(get_db)):
     user = get_user(username=username, db=db)
     if not verify_password(password, user.password):
-        return False
+        raise credentials_exception
     return user
 
 

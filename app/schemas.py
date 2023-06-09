@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-
+from typing import List
 
 # Token Model
 class Token(BaseModel):
@@ -10,7 +10,7 @@ class Token(BaseModel):
 class TokenData(BaseModel):
     username: str or None = None
     
-    
+
 # For User
 class UserLogin(BaseModel):
     username: str
@@ -35,25 +35,24 @@ class UserCreateSuperuser(UserModel):
 
 # For Product
 class ProductModel(BaseModel):
-    created_by: int or None = None # with User
     name: str
-    price: str
+    price: float
     class Config:
         orm_mode = True
    
    
 class ProductUpdateModel(BaseModel):
     name: str or None = None
-    price: str or None = None
+    price: float or None = None
+    
     class Config:
         orm_mode = True
+
 # Sales 
 class SalesModel(BaseModel):
-    created_by: int # with User
-    product_id: int # with Product
     buyer: str or None = None
     quantity: int
-
+    total_price: float or None = None
     class Config:
         orm_mode = True
-   
+        
