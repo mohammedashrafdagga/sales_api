@@ -20,7 +20,7 @@ def get_all_products() -> List[Product]:
     return products
 
 # create product
-def create_product(user: User, name: str, price: int) -> Product:
+def create_product(user: User, name: str, price: float) -> Product:
     product = Product(name=name, price=price, created_by=user.id)
     db.add(product)
     db.commit()
@@ -28,7 +28,7 @@ def create_product(user: User, name: str, price: int) -> Product:
     return product
 
 # update product
-def update_product(product: Product, name: Optional[str] = None, price: Optional[int] = None) -> Product:
+def update_product(product: Product, name: Optional[str] = None, price: Optional[float] = None) -> Product:
     if name:
         product.name = name
     if price:

@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends
 from fastapi.security import OAuth2PasswordRequestForm
 from app.init_db import get_db
-from app.jwt import authenticate_user, create_access_token, generate_hash_password
+from app.jwt import authenticate_user, create_access_token
 from sqlalchemy.orm import Session
-from app.schemas import Token
+from app.schemas import Token, UserLogin
 from datetime import timedelta
 from app.settings import ACCESS_TOKEN_EXPIRE_MINUTES
 '''

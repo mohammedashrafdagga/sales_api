@@ -15,18 +15,19 @@ from crud.product import get_product_by_id, get_all_products, create_product, up
 
 '''
 router = APIRouter(
-    prefix='/api/product'
+    prefix='/api/product',
+    tags = ['product']
 )
 
 @router.get("/{product_id}", response_model=ProductModel)
-def get_product_view(product_id: int):
+def get_product_view(product_id: int,current_user: User = Depends(get_current_active_user)):
     product = get_product_by_id(product_id)
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
     return product
 
 @router.get("", response_model=List[ProductModel])
-def get_products_view():
+def get_products_view(current_user: User = Depends(get_current_active_user)):
     products = get_all_products()
     return products
 

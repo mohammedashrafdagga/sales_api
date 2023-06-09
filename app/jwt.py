@@ -12,7 +12,7 @@ from app.schemas import TokenData
 
 
 pwd_context = CryptContext(schemes=['bcrypt'], deprecated = 'auto')
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl='login')
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl='.api/auth/login')
 
 credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
