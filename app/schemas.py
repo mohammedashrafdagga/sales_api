@@ -19,18 +19,17 @@ class UserLogin(BaseModel):
     class Config:
         orm_mode = True
 
-class User(BaseModel):
+class UserModel(BaseModel):
     name: str
     email: str
     username: str
     class Config:
         orm_mode = True
     
-class UserCreateSuperuser(User):
+class UserCreateSuperuser(UserModel):
     password: str
     is_superuser: bool or None = True
     is_active: bool or None = True
-    
     class Config:
         orm_mode = True
 

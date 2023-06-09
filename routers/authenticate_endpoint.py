@@ -1,9 +1,9 @@
-from fastapi import APIRouter, Depends,HTTPException, status
+from fastapi import APIRouter, Depends
 from fastapi.security import OAuth2PasswordRequestForm
 from app.init_db import get_db
 from app.jwt import authenticate_user, create_access_token, generate_hash_password
 from sqlalchemy.orm import Session
-from app.schemas import Token, User, UserCreateSuperuser
+from app.schemas import Token
 from datetime import timedelta
 from app.settings import ACCESS_TOKEN_EXPIRE_MINUTES
 '''
@@ -17,28 +17,31 @@ router= APIRouter(
     tags = ['authenticate']
 )
 
-# Login User
-@router.post('/register', response_model=User)
-async def register_user(from_data: UserCreateSuperuser, db:Session=Depends(get_db)):
-    # check email and username and generate password
-    if db.query(User).filter(User.username == from_data.username).first():
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail='username your used is already exists, try again!!'
-        )
-    if db.query(User).filter(User.email == from_data.email).first():
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail='email your used is already exists, try again!!'
-        )
-    data = from_data.dict()
-    password = data.pop('password')
-    hash_password = generate_hash_password(password=password)
-    new_user = UserCreateSuperuser(**data, password=hash_password)
-    db.add(new_user)
-    db.commit()
-    db.refresh(new_user)
-    return new_user
+# register User
+# @router.post('/register', response_model=UserModel)
+# async def register_user(from_data: UserCreateSuperuser, db:Session=Depends(get_db)):
+#     # check email and username and generate password
+#     if db.query(User).filter(User.username == from_data.username).first():
+#         raise HTTPException(
+#             status_code=status.HTTP_400_BAD_REQUEST,
+#             detail='username your used is already exists, try again!!'
+#         )
+#     if db.query(User).filter(User.email == from_data.email).first():
+#         raise HTTPException(
+#             status_code=status.HTTP_400_BAD_REQUEST,
+#             detail='email your used is already exists, try again!!'
+#         )
+#     data = from_data.dict()
+#     password = data.pop('password')
+#     hash_password = generate_hash_password(password=password)
+#     new_user = UserCreateSuperuser(**data, password=hash_password)
+#     user = User(
+#         **new_user.dict()
+#     )
+#     db.add(user)
+#     db.commit()
+#     db.refresh(new_user)
+#     return new_user
 
 
 @router.post('/login', response_model=Token)
