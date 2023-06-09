@@ -26,7 +26,14 @@ class User(BaseModel):
     class Config:
         orm_mode = True
     
+class UserCreateSuperuser(User):
+    password: str
+    is_superuser: bool or None = True
+    is_active: bool or None = True
     
+    class Config:
+        orm_mode = True
+
 # For Product
 class Product(BaseModel):
     created_by: int # with User
