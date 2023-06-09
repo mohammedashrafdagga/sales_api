@@ -34,16 +34,21 @@ class UserCreateSuperuser(UserModel):
         orm_mode = True
 
 # For Product
-class Product(BaseModel):
-    created_by: int # with User
+class ProductModel(BaseModel):
+    created_by: int or None = None # with User
     name: str
     price: str
     class Config:
         orm_mode = True
    
    
+class ProductUpdateModel(BaseModel):
+    name: str or None = None
+    price: str or None = None
+    class Config:
+        orm_mode = True
 # Sales 
-class Product(BaseModel):
+class SalesModel(BaseModel):
     created_by: int # with User
     product_id: int # with Product
     buyer: str or None = None

@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from routers.authenticate_endpoint import router as authenticate_router
+from routers.products_endpoint import router as product_router
 # app instance from fastapi
 app = FastAPI()
 
@@ -12,3 +13,4 @@ def index():
 
 # connect router here
 app.include_router(authenticate_router)
+app.include_router(product_router)
