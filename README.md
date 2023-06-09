@@ -43,7 +43,8 @@ Hi! I'm Building Mini Sales API System using Fastapi Framework.
 DB_PASSWORD=***
 DB_SERVER=****
 DB_NAME=sales_api
-SECRET_KEY=****```
-to create secert key using this command ```openssl rand -hex 32``` 
+SECRET_KEY=****
+```
+- to create secert key using this command `openssl rand -hex 32` 
 ##### now can run the project using this command
 `uvicorn main:app --reload `
