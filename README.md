@@ -39,7 +39,8 @@ Hi! I'm Building Mini Sales API System using Fastapi Framework.
 - after that we must create `.env` file tp put variable using in project
 - create new database in postgressql called `sales_api`
 - in this file include `SECERT_KEY ` and Variable Using in `app.settings` file to connect with postgresql database
-```DB_USERNAME=***
+```
+DB_USERNAME=***
 DB_PASSWORD=***
 DB_SERVER=****
 DB_NAME=sales_api
