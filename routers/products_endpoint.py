@@ -26,7 +26,7 @@ def get_product_view(product_id: int,current_user: User = Depends(get_current_ac
         raise HTTPException(status_code=404, detail="Product not found")
     return product
 
-@router.get("", response_model=List[ProductModel])
+@router.get("/", response_model=List[ProductModel])
 def get_products_view(current_user: User = Depends(get_current_active_user)):
     products = get_all_products()
     return products
