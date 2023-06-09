@@ -14,3 +14,8 @@ db_name = os.environ.get("DB_NAME")
 SQLALCHEMY_DATABASE_URL = (
     f"postgresql://{db_username}:{db_password}@{db_server}/{db_name}"
 )
+
+# for authentication
+SECRET_KEY = os.environ.get('SECRET_KEY')
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 30
