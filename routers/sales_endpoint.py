@@ -20,7 +20,7 @@ router = APIRouter(
     tags= ['sales']
 )
 
-@router.post("/create/<product_id:int>", response_model=SalesModel)
+@router.post("/create/{product_id}", response_model=SalesModel)
 def create_sale_view(
     product_id:int,
     sale_create: SalesModel,
@@ -46,12 +46,6 @@ def get_all_sales_view( current_user: User = Depends(get_current_active_user),):
     sales = get_all_sales()
     return sales
 
-@router.get("/{sale_id}", response_model=SalesModel)
-def get_sale_view(sale_id: int,  current_user: User = Depends(get_current_active_user),):
-    sale = get_sale_by_id(sale_id)
-    if not sale:
-        raise HTTPException(status_code=404, detail="Sale not found")
-    return sale
 
 @router.get("/date/{sale_date}", response_model=List[SalesModel])
 def get_sales_by_date_view(sale_date: date,  current_user: User = Depends(get_current_active_user),):
