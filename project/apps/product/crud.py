@@ -1,9 +1,8 @@
 from typing import Optional
-from app.models import Product, User
-from app.database import SessionLocal
+from project.apps.authenticate.models import User
+from .models import Product
+from project.db.database import SessionLocal
 from typing import List
-from fastapi import Depends
-
 
 
 # get specific product
@@ -13,12 +12,14 @@ def get_product_by_id(product_id: int) -> Optional[Product]:
     db.close()
     return product
 
+
 # get all product
 def get_all_products() -> List[Product]:
     db = SessionLocal()
     products = db.query(Product).all()
     db.close()
     return products
+
 
 # create product
 def create_product(user: User, name: str, price: float) -> Product:
@@ -30,8 +31,11 @@ def create_product(user: User, name: str, price: float) -> Product:
     db.close()
     return product
 
+
 # update product
-def update_product(product: Product, name: Optional[str] = None, price: Optional[float] = None) -> Product:
+def update_product(
+    product: Product, name: Optional[str] = None, price: Optional[float] = None
+) -> Product:
     db = SessionLocal()
     if name:
         product.name = name
@@ -42,10 +46,10 @@ def update_product(product: Product, name: Optional[str] = None, price: Optional
     db.close()
     return product
 
+
 # delete product
 def delete_product_by_id(product_id: int):
     db = SessionLocal()
     db.query(Product).filter(Product.id == product_id).delete()
     db.commit()
     db.close()
-    
