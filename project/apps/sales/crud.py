@@ -1,11 +1,13 @@
-from app.database import SessionLocal
-from app.models import Sales
+from project.db.database import SessionLocal
+from .models import Sales
 from typing import List, Optional
 from datetime import date
 from sqlalchemy.sql import func
 
 
-def create_sale(buyer: str, created_by: int, product_id: int, quantity: int, total_price: float) -> Sales:
+def create_sale(
+    buyer: str, created_by: int, product_id: int, quantity: int, total_price: float
+) -> Sales:
     db = SessionLocal()
     sale = Sales(
         buyer=buyer,
@@ -20,11 +22,13 @@ def create_sale(buyer: str, created_by: int, product_id: int, quantity: int, tot
     db.close()
     return sale
 
+
 def get_all_sales() -> List[Sales]:
     db = SessionLocal()
     sales = db.query(Sales).all()
     db.close()
     return sales
+
 
 def get_sale_by_id(sale_id: int) -> Optional[Sales]:
     db = SessionLocal()
@@ -32,15 +36,13 @@ def get_sale_by_id(sale_id: int) -> Optional[Sales]:
     db.close()
     return sale
 
+
 def get_sales_by_date(sale_date: date) -> List[Sales]:
     db = SessionLocal()
-    sales = (
-        db.query(Sales)
-        .filter(func.date(Sales.date) == sale_date)
-        .all()
-    )
+    sales = db.query(Sales).filter(func.date(Sales.date) == sale_date).all()
     db.close()
     return sales
+
 
 def get_sales_in_date_range(start_date: date, end_date: date) -> List[Sales]:
     db = SessionLocal()
@@ -51,6 +53,7 @@ def get_sales_in_date_range(start_date: date, end_date: date) -> List[Sales]:
     )
     db.close()
     return sales
+
 
 def get_sales_by_product(product_id: int) -> List[Sales]:
     db = SessionLocal()

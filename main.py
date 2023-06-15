@@ -1,7 +1,9 @@
 from fastapi import FastAPI
-from routers.authenticate_endpoint import router as authenticate_router
-from routers.products_endpoint import router as product_router
-from routers.sales_endpoint import router as sales_router
+from project.apps.authenticate.router import router as authenticate_router
+from project.apps.product.router import router as product_router
+from project.apps.sales.router import router as sales_router
+
+
 # app instance from fastapi
 app = FastAPI()
 
@@ -9,7 +11,7 @@ app = FastAPI()
 # index home
 @app.get('/')
 def index():
-    return "Hello into Mini Sales  System"
+    return "Hello into Mini Sales System"
 
 
 # connect router here
